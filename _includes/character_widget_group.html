@@ -1,0 +1,11 @@
+<div class="character-widgets">
+{% for chara in include.characters %}
+{% if chara contains "c:" %}
+{% assign char = site.characters | find: "char_id", chara %}
+{% include character_widget.html character=char.char_id %}
+
+{% else %}
+<p><strong>Character ID not found: {{ chara }}</strong></p>
+{% endif %}
+{% endfor %}
+</div>

@@ -1,0 +1,58 @@
+
+/* Heading */
+hgroup {
+    text-align: right;
+}
+
+/* Main */
+
+#body-image {
+    float: left;
+    width: 30%;
+}
+#body-image img {
+    width: 100%;
+    margin-top: 1em;
+}
+
+main {
+    display: block;
+    width: 80%;
+    margin: auto;
+    margin-right: 0;
+}
+
+#colors {
+    margin: 1em;
+}
+
+section h2 {
+    text-align: center;
+}
+
+/* Attributes and Relationships */
+
+#attributes table {
+    width: 83%;
+    table-layout: fixed;
+    border: 1px var(--accent-color) solid;
+    border-collapse: collapse;
+}
+
+#attributes table:nth-child(2) {
+    border-top: none;
+}
+
+#attributes th,
+#attributes td {
+    border-bottom: 1px var(--accent-color) dotted;
+}
+
+#attributes thead th {
+    border-bottom: 1px var(--accent-color) solid;
+}
+
+#attributes th,
+#attributes td:nth-child(2) {
+    border-right: 1px var(--accent-color) dotted;
+}

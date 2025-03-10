@@ -1,0 +1,25 @@
+
+:root {
+    /* Backgrounds */
+    --fg-color  : white;
+    --bg-color  : lightgrey;
+    --fg-image  : ;
+    --bg-image  : ;
+
+    /* Text */
+    --text-color: black;
+    --header-color: #212A55;
+    --link-color: #535C89;
+    --font-size: calc(1rem + (1vw / 5));
+    --main-font: serif;
+    --header-font: sans-serif;
+
+    --accent-color: teal;
+    --grid-size: 180px; /* The minimum width of images in the gallery and widget grids */
+}
+
+@media (prefers-color-scheme: dark) {
+}
+[theme='dark'] {
+    --bg-color: black;
+}

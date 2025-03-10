@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang={{ site.language }}>
+    <head>
+        <title>{{ page.name }}</title>
+        <meta charset=utf-8>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% if page.theme %}
+            <link rel=stylesheet href={{ "assets/css/" | append: page.theme | relative_url }}>
+        {% else %}
+            <link rel=stylesheet href={{ "assets/css/default.css" | relative_url }}>
+        {% endif %}
+        <link rel=stylesheet href={{ "assets/css/universal.css" | relative_url }}>
+        {% case page.style %}
+            {% when 0 %}
+                <link rel=stylesheet href={{ "assets/css/wiki.css" | relative_url }}>
+            {% when 1 %}
+                <link rel=stylesheet href={{ "assets/css/full_body.css" | relative_url }}>
+        {% endcase %}
+        <link rel="shortcut icon" href={{ "assets/img/" | append: page.image.icon | relative_url }}>
+    </head>
+    <body>
+        {% include navigation.html %}
+
+        {% if page.style == 1 %}
+            <aside id="body-image">
+                <img src={{ "assets/img/" | append: page.image.body | relative_url }} alt="Full body image of {{ page.name }}">
+            </aside>
+        {% endif %}
+
+        <hgroup>
+            <h1>{{ page.name }}</h1>
+            {% if page.tagline %}
+                <p>{{ page.tagline }}</p>
+            {% endif %}
+        </hgroup>
+
+        <main>
+            <section id="attributes">
+                {% if page.style == 0 %}
+                    <p class="wiki-name"><b>{{ page.name }}</b></p>
+                    <img src={{ "assets/img/" | append: page.image.block | relative_url }} alt="Image of {{ page.name }}">
+                {% endif %}
+                <table>
+                    <thead>
+                        <tr>
+                            {% case page.style %}
+                                {% when 0 %}
+                                    <th colspan="2">Attributes</th>
+                                {% when 1 %}
+                                    <th colspan="4">Attributes</th>
+                            {% endcase %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% case page.style %}
+                            {% when 0 %}
+                                {% for part in page.attributes %}
+                                <tr>
+                                    <th>{{ part[0] }}</th>
+                                    <td>{{ part[1] }}</td>
+                                </tr>
+                                {% endfor %}
+                            {% when 1 %}
+                                {% for part in page.attributes %}
+                                    {% capture even %}{{ forloop.index | modulo: 2 }}{% endcapture %}
+                                    {% if even == "1" %}
+                                        <tr>
+                                            <th>{{ part[0] }}</th>
+                                            <td>{{ part[1] }}</td>
+                                    {% else %}
+                                            <th>{{ part[0] }}</th>
+                                            <td>{{ part[1] }}</td>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                        {% endcase %}
+
+                    </tbody>
+                </table>
+
+                {% if page.relation_type == 0 %}
+                    <table>
+                        <thead>
+                            <tr>
+                                {% case page.style %}
+                                    {% when 0 %}
+                                        <th colspan="2">Relationships</th>
+                                    {% when 1 %}
+                                        <th colspan="4">Relationships</th>
+                                {% endcase %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% case page.style %}
+                                {% when 0 %}
+                                    {% for relation in page.relationships %}
+                                        <tr>
+                                            <th>{{ relation[0] }}</th>
+                                            {% if relation[1].url %}
+                                                <td>
+                                                    {% capture name %}{{ relation[1].name }}{% endcapture %}
+                                                    {% capture url %}{{ relation[1].url }}{% endcapture %}
+                                                    {% include character_link.html name=name url=url %}
+                                                </td>
+                                            {% else %}
+                                                <td>{{ relation[1].name }}</td>
+                                            {% endif %}
+                                        </tr>
+                                    {% endfor %}
+                                {% when 1 %}
+                                    {% for relation in page.relationships %}
+                                        {% capture even %}{{ forloop.index | modulo: 2 }}{% endcapture %}
+                                        {% if even == "1" %}
+                                            <tr>
+                                        {% endif %}
+                                            <th>{{ relation[0] }}</th>
+                                            {% if relation[1].url %}
+                                                <td>
+                                                    {% capture name %}{{ relation[1].name }}{% endcapture %}
+                                                    {% capture url %}{{ relation[1].url }}{% endcapture %}
+                                                    {% include character_link.html name=name url=url %}
+                                                </td>
+                                            {% else %}
+                                                <td>{{ relation[1].name }}</td>
+                                            {% endif %}
+                                        {% if even == "0" %}
+                                            </tr>
+                                        {% endif %}
+                                    {% endfor %}
+                            {% endcase %}
+                        </tbody>
+                    </table>
+                {% endif %}
+            </section>
+
+            {% if page.colors.size > 0 %}
+                <aside id="colors">
+                    {% case page.color_type %}
+                        {% when 1 %}
+                            {% capture clip %}circle-clip{% endcapture %}
+                        {% when 2 %}
+                            {% capture clip %}star-clip{% endcapture %}
+                        {% when 3 %}
+                            {% capture clip %}diamond-clip{% endcapture %}
+                    {% endcase %}
+                    {% for color in page.colors %}
+                        <button class="{{ clip | default: '' }}" style="background: #{{ color }}" onclick="clipboard('#{{ color }}')">
+                            <img src={{ "assets/img/ui/ICON_clipboard.png" | relative_url }} alt="Clipboard icon">
+                        </button>
+                    {% endfor %}
+                </aside>
+            {% endif %}
+
+            {% for section in page.section %}
+                <section id="{{ section[0] | replace: ' ', '-' }}">
+                    <h2>{{ section[0] }}</h2>
+                    {{ section[1] | markdownify }}
+                </section>
+            {% endfor %}
+
+            {% if page.relation_type == 1 %}
+                <section id="relationships">
+                    <h2>Relationships</h2>
+                    <div class="relationships">
+                        {% for relation in page.relationships %}
+                            <article class="relation">
+                                <div class="icon">
+                                    <h3>{{ relation[0] }}</h3>
+                                    {% if relation[1].url or relation[1].icon %}
+                                        {% capture url %}{{ relation[1].url | default: "" }}{% endcapture %}
+                                        {% capture icon %}{{ relation[1].icon | default: "" }}{% endcapture %}
+                                        {% capture name %}{{ relation[1].name | default: "Unknown" }}{% endcapture %}
+                                        {% include character_icon.html url=url icon=icon name=name %}
+                                    {% endif %}
+                                    <p>
+                                        {% if relation[1].url %}
+                                            {% capture url %}{{ relation[1].url | default: "" }}{% endcapture %}
+                                            {% capture name %}{{ relation[1].name | default: "Unknown" }}{% endcapture %}
+                                            {% include character_link.html name=name url=url %}
+                                        {% else %}
+                                            {{ relation[1].name }}
+                                        {% endif %}
+
+                                    </p>
+                                </div>
+                                <div class="details">
+                                    {{ relation[1].details | markdownify }}
+                                </div>
+                            </article>
+                        {% endfor %}
+                    </div>
+                </section>
+            {% endif %}
+
+            <section id="gallery">
+                <h2>Gallery</h2>
+                <div>
+                {% for image in page.gallery %}
+                    <a href="#image_{{ forloop.index }}">
+                        <img id="image{{ forloop.index }}" src={{ "assets/img/" | append: image[1].file | relative_url }} alt={{ image[0] }}>
+                    </a>
+                {% endfor %}
+                </div>
+            </section>
+
+            {% if page.permissions or page.ownership %}
+                <section id="permowner">
+                    <hr>
+                    {% if page.permissions %}
+                        <details id="permissions">
+                            <summary>Permissions</summary>
+                            <table>
+                                <tbody>
+                                    {% for part in page.permissions %}
+                                    <tr>
+                                        <th>{{ part[0] }}</th>
+                                        <td>{{ part[1] }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </details>
+                    {% endif %}
+                    {% if page.ownership %}
+                        <details id="ownership">
+                            <summary>Ownership</summary>
+                            <table>
+                                <tbody>
+                                    {% for part in page.ownership %}
+                                    <tr>
+                                        <th>{{ part[0] }}</th>
+                                        <td>{{ part[1] }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </details>
+                    {% endif %}
+                </section>
+            {% endif %}
+        </main>
+        {% for image in page.gallery %}
+            <aside id="image_{{ forloop.index }}" class="full-image">
+                <div class="image-view">
+                    <img src={{ "assets/img/" | append: image[1].file | relative_url }} alt="{{ image[1].alt | default: image[0] }}">
+
+                    <div class="image-nav">
+                        {% unless forloop.first %}
+                            <a href="#image_{{ forloop.index | minus: 1 }}" class="previous">Previous</a>
+                        {% endunless %}
+
+                        {% unless forloop.last %}
+                            <a href="#image_{{ forloop.index | plus: 1 }}" class="next">Next</a>
+                        {% endunless %}
+                    </div>
+                </div>
+                <div class="image-info">
+                    <h1>{{ image[0] }}</h1>
+
+                    {% if image[1].artist %}
+                        <p> <b>Artist:</b>
+                        {% if image[1].artist_url %}
+                            <a target="_blank" href={{ image[1].artist_url }}>{{ image[1].artist }}</a>
+                        {% else %}
+                            {{ image[1].artist }}
+                        {% endif %}
+                        </p>
+                    {% endif %}
+
+                    {% if image[1].characters.size > 0 %}
+                        <p><b>Characters:</b></p>
+                        <ul>
+                        {% for char in image[1].characters %}
+                            <li>
+                            {% capture name %}{{ char[0] }}{% endcapture %}
+                            {% capture url %}{{ char[1].url }}{% endcapture %}
+                            {% include character_link.html name=name url=url %}
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+
+                    {% if image[1].description %}
+                        <p><b>Description:</b></p>
+                        <div class="description">
+                            {{ image[1].description | markdownify }}
+                        </div>
+                    {% endif %}
+
+                    <a class="close-image" href="#image{{ forloop.index }}">&#10006;</a>
+                </div>
+            </aside>
+        {% endfor %}
+
+        {% include footer.html %}
+    </body>
+    {% if page.colors.size > 0 %}
+        <script src={{ "assets/js/clipboard.js" | relative_url }} charset="utf-8"></script>
+    {% endif %}
+</html>

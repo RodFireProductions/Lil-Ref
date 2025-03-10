@@ -1,0 +1,9 @@
+{% if include.url contains "c:" %}
+{% assign chara = site.characters | find: "char_id", include.url %}
+<img src="{{ 'assets/img/' | append: chara.image.icon | relative_url }}" alt="Icon of {{ include.name }}">
+{% elsif include.icon contains "http" %}
+<img src="{{ include.icon }}" alt="Icon of {{ include.name }}">
+{% elsif include.icon != "" %}
+<img src="{{ 'assets/img/' | append: include.icon | relative_url }}" alt="Icon of {{ include.name }}">
+{% else %}
+{% endif %}

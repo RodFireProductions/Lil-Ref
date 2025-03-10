@@ -1,0 +1,16 @@
+title: Lil-Ref
+author: Your name
+url: Site Url
+github_repo_url: https://github.com/RodFireProductions/Lil-Ref
+language: en-us
+description: Your site description.
+
+## ## ## ##
+include     : ["_pages", "_characters"]
+collections :
+    pages       :
+        output: true
+        permalink: /:path.html
+    characters  :
+        output: true
+        permalink: /character/:path.html

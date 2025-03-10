@@ -1,0 +1,5 @@
+<div class="character-widgets">
+{% for char in site.characters %}
+    {% include character_widget.html character=char.char_id %}
+{% endfor %}
+</div>

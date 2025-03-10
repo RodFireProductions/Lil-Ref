@@ -1,0 +1,48 @@
+
+/* Heading */
+hgroup {
+    text-align: center;
+}
+
+/* Main */
+main {
+    width: 90%;
+    display: block;
+    margin: auto;
+}
+
+/* Attributes and Relationships */
+
+#attributes {
+    display: block;
+    float: right;
+    width: 28%;
+    background-color: rgba(0, 0, 0, 0.05);
+    border: 1px var(--accent-color) solid;
+    padding: .25em;
+    margin-left: .5em;
+}
+
+#attributes table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#attributes thead {
+    background-color: var(--fg-color);
+}
+#attributes tbody th {
+    text-align: left;
+    display: flex;
+    align-content: start;
+}
+#attributes tr {
+    border-bottom: 1px var(--accent-color) dotted;
+}
+
+#attributes .wiki-name {
+    background-color: var(--fg-color);
+    margin: 0px;
+    text-align: center;
+}
