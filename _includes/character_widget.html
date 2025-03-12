@@ -2,7 +2,7 @@
 {% assign char = site.characters | find: "char_id", include.character %}
 <div class="character-widget">
 <img src="{{ 'assets/img/' | append: char.image.icon | relative_url }}" alt="Icon of {{ char.name }}">
-<p><a href="{{ char.url }}">{{ char.name }}</a></p>
+<p><a href="{{ char.url | relative_url }}">{{ char.name }}</a></p>
 </div>
 
 {% else %}

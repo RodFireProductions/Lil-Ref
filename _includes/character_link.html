@@ -1,6 +1,6 @@
 {% if include.url contains "c:" %}
 {% assign chara = site.characters | find: "char_id", include.url %}
-<a href="{{ chara.url | default: '#' }}">{{ include.name }}</a>
+<a href="{{ chara.url | default: '#' | relative_url }}">{{ include.name }}</a>
 {% else %}
-<a target="_blank" href="{{ include.url }}">{{ include.name }}</a>
+<a target="_blank" href="{{ include.url | relative_url }}">{{ include.name }}</a>
 {% endif %}
