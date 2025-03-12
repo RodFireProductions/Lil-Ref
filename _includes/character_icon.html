@@ -1,4 +1,4 @@
-{% if include.url contains "c:" %}
+{% if include.url contains "c:" and include.icon == "" %}
 {% assign chara = site.characters | find: "char_id", include.url %}
 <img src="{{ 'assets/img/' | append: chara.image.icon | relative_url }}" alt="Icon of {{ include.name }}">
 {% elsif include.icon contains "http" %}

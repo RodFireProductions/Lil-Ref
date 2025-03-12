@@ -17,9 +17,3 @@
     --accent-color: teal;
     --grid-size: 180px; /* The minimum width of images in the gallery and widget grids */
 }
-
-@media (prefers-color-scheme: dark) {
-}
-[theme='dark'] {
-    --bg-color: black;
-}

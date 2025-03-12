@@ -102,7 +102,7 @@ gallery:
 permissions:
     Fan Works: Allowed
     Commissions: Ask First
-    Shipping: Only with Character
+    Shipping: No
     OC Interaction: Allowed
     Franchise Interaction: Allowed
 

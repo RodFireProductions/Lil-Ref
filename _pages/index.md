@@ -4,6 +4,7 @@ layout: base
 
 group:
     - c:example
+    - c:example2
     - c:example
 ---
 
