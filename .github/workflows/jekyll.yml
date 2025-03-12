@@ -40,6 +40,7 @@ jobs:
           ruby-version: '3.1' # Not needed with a .ruby-version file
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
           cache-version: 0 # Increment this number if you need to re-download cached gems
+          token: ${{ secrets.GH_TOKEN }}
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
@@ -55,7 +56,7 @@ jobs:
   # Deployment job
   deploy:
     environment:
-      name: github-pages
+      name: gh-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
