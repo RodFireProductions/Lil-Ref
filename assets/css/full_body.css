@@ -56,3 +56,33 @@ section h2 {
 #attributes td:nth-child(2) {
     border-right: 1px var(--accent-color) dotted;
 }
+
+/* Footer */
+
+footer {
+    display: block;
+    width: 80%;
+    margin: auto;
+    margin-right: 0;
+}
+
+/* Media Queries */
+
+@media only screen and (max-width: 600px) {
+    main {
+        width: auto;
+    }
+
+    #body-image {
+        float: left;
+        width: 25%;
+    }
+
+    #attributes table {
+        width: 75%;
+    }
+
+    footer {
+        margin: auto;
+    }
+}

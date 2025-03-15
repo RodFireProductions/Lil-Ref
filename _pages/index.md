@@ -8,7 +8,7 @@ group:
     - c:example
 ---
 
-## Displaying and individual widget.
+## Displaying an individual widget.
 {% include character_widget.html character="c:example" %}
 
 ## Displaying a group of widgets.

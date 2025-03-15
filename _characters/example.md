@@ -6,6 +6,7 @@ theme: # Leave empty to use "default.css"
 style: 1 # 0 - Wiki | 1 - Full body
 tags:
 - example
+- one
 
 # Basic
 name: Character Name
@@ -103,7 +104,7 @@ gallery:
 permissions:
     Fan Works: Allowed
     Commissions: Ask First
-    Shipping: No
+    Shipping: Not Allowed
     OC Interaction: Allowed
     Franchise Interaction: Allowed
 

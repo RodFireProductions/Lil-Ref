@@ -2,6 +2,8 @@
 An original character directory template.
 Inspired by sites like [Toyhou.se](https://toyhou.se) and [RefSheet](https://refsheet.net).
 
+You can see the demo here: [demo](https://rodfireproductions.github.io/Lil-Ref/)
+
 The spiritual predecessor of [RefMine](https://refmine.shroom.ink),
 a project that got rewritten multiple times but never released.
 A project I started when I was a lot less experienced.
@@ -9,9 +11,6 @@ I just needed to restart again with a blank slate.
 
 Features
 - Two layout styles: Wiki, and Full-Body.
-
-ToDo:
-- Figure out if tags will actually be a thing.
 
 ## Set Up Locally
 

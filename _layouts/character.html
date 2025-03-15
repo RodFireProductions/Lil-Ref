@@ -5,25 +5,25 @@
         <meta charset=utf-8>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% if page.theme %}
-            <link rel=stylesheet href={{ "assets/css/" | append: page.theme | relative_url }}>
+            <link rel=stylesheet href="{{ 'assets/css/' | append: page.theme | relative_url }}">
         {% else %}
-            <link rel=stylesheet href={{ "assets/css/default.css" | relative_url }}>
+            <link rel=stylesheet href="{{ 'assets/css/default.css' | relative_url }}">
         {% endif %}
-        <link rel=stylesheet href={{ "assets/css/universal.css" | relative_url }}>
+        <link rel=stylesheet href="{{ 'assets/css/universal.css' | relative_url }}">
         {% case page.style %}
             {% when 0 %}
-                <link rel=stylesheet href={{ "assets/css/wiki.css" | relative_url }}>
+                <link rel=stylesheet href="{{ 'assets/css/wiki.css' | relative_url }}">
             {% when 1 %}
-                <link rel=stylesheet href={{ "assets/css/full_body.css" | relative_url }}>
+                <link rel=stylesheet href="{{ 'assets/css/full_body.css' | relative_url }}">
         {% endcase %}
-        <link rel="shortcut icon" href={{ "assets/img/" | append: page.image.icon | relative_url }}>
+        <link rel="shortcut icon" href="{{ 'assets/img/' | append: page.image.icon | relative_url }}">
     </head>
     <body>
         {% include navigation.html %}
 
         {% if page.style == 1 %}
             <aside id="body-image">
-                <img src={{ "assets/img/" | append: page.image.body | relative_url }} alt="Full body image of {{ page.name }}">
+                <img src="{{ 'assets/img/' | append: page.image.body | relative_url }}" alt="Full body image of {{ page.name }}">
             </aside>
         {% endif %}
 
@@ -38,7 +38,7 @@
             <section id="attributes">
                 {% if page.style == 0 %}
                     <p class="wiki-name"><b>{{ page.name }}</b></p>
-                    <img src={{ "assets/img/" | append: page.image.block | relative_url }} alt="Image of {{ page.name }}">
+                    <img src="{{ 'assets/img/' | append: page.image.block | relative_url }}" alt="Image of {{ page.name }}">
                 {% endif %}
                 <table>
                     <thead>
@@ -145,7 +145,7 @@
                     {% endcase %}
                     {% for color in page.colors %}
                         <button class="{{ clip | default: '' }}" style="background: #{{ color }}" onclick="clipboard('#{{ color }}')">
-                            <img src={{ "assets/img/ui/ICON_clipboard.png" | relative_url }} alt="Clipboard icon">
+                            <img src="{{ 'assets/img/ui/ICON_clipboard.png' | relative_url }}" alt="Clipboard icon">
                         </button>
                     {% endfor %}
                 </aside>
@@ -197,7 +197,7 @@
                 <div>
                 {% for image in page.gallery %}
                     <a href="#image_{{ forloop.index }}">
-                        <img id="image{{ forloop.index }}" src={{ "assets/img/" | append: image[1].file | relative_url }} alt={{ image[0] }}>
+                        <img id="image{{ forloop.index }}" src="{{ 'assets/img/' | append: image[1].file | relative_url }}" alt={{ image[0] }}>
                     </a>
                 {% endfor %}
                 </div>
@@ -238,11 +238,33 @@
                     {% endif %}
                 </section>
             {% endif %}
+
+            {% if page.tags.size != 0 %}
+                <section id="tags">
+                    {% unless page.permissions or page.ownership %}
+                        <hr>
+                    {% endunless %}
+                    <details>
+                        <summary>Tags</summary>
+                        <ul>
+                            {% assign tags = page.tags | uniq %}
+                            {% for tag in tags %}
+                                <li>
+                                    {% capture url %}tag/{{ tag }}.html{% endcapture %}
+                                    <a href="{{ url | relative_url }}">{{ tag }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </details>
+
+                </section>
+            {% endif %}
         </main>
+
         {% for image in page.gallery %}
             <aside id="image_{{ forloop.index }}" class="full-image">
                 <div class="image-view">
-                    <img src={{ "assets/img/" | append: image[1].file | relative_url }} alt="{{ image[1].alt | default: image[0] }}">
+                    <img src="{{ 'assets/img/' | append: image[1].file | relative_url }}" alt="{{ image[1].alt | default: image[0] }}">
 
                     <div class="image-nav">
                         {% unless forloop.first %}
@@ -295,6 +317,6 @@
         {% include footer.html %}
     </body>
     {% if page.colors.size > 0 %}
-        <script src={{ "assets/js/clipboard.js" | relative_url }} charset="utf-8"></script>
+        <script src="{{ 'assets/js/clipboard.js' | relative_url }}" charset="utf-8"></script>
     {% endif %}
 </html>

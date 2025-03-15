@@ -17,7 +17,7 @@ main {
     display: block;
     float: right;
     width: 28%;
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: color-mix(in oklab, var(--text-color) 10%, #00000000 100%);
     border: 1px var(--accent-color) solid;
     padding: .25em;
     margin-left: .5em;
@@ -45,4 +45,19 @@ main {
     background-color: var(--fg-color);
     margin: 0px;
     text-align: center;
+}
+
+/* Media Queries */
+
+@media only screen and (max-width: 800px) {
+    #attributes {
+        float: none;
+        width: 80%;
+        margin: 1em auto;
+    }
+}
+@media only screen and (max-width: 500px) {
+    #attributes {
+        width: 90%;
+    }
 }

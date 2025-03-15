@@ -8,6 +8,21 @@ body {
     margin: 0px;
     padding: 1em 11em;
 }
+@media only screen and (max-width: 1200px) {
+    body {
+        padding: 1em 8em;
+    }
+}
+@media only screen and (max-width: 1000px) {
+    body {
+        padding: 1em 5em;
+    }
+}
+@media only screen and (max-width: 800px) {
+    body {
+        padding: 1em 1em;
+    }
+}
 
 main {
     background-color: var(--fg-color);
@@ -31,6 +46,7 @@ a:hover {
 
 footer {
     text-align: center;
+    padding: 1em;
 }
 
 img {
@@ -44,6 +60,12 @@ hr {
     border: none;
     border-bottom: 2px var(--accent-color) solid;
     margin: 1em;
+}
+
+.b_88x31 {
+    display: block;
+    width: 88px;
+    image-rendering: crisp-edges;
 }
 
 /* Navigation */
@@ -105,8 +127,6 @@ hgroup p {
 .character-widget img {
     width: 90%;
 }
-
-
 
 /* Colors */
 #colors {
@@ -201,16 +221,17 @@ hgroup p {
     grid-gap: 1em;
     padding: 1em;
 }
+
 .full-image .previous {
     grid-area: prev;
     text-align: right;
     color: white;
 }
+
 .full-image .next {
     grid-area: next;
     color: white;
 }
-
 
 .full-image .image-info {
     background-color: var(--fg-color);
@@ -230,9 +251,30 @@ hgroup p {
     font-size: 1.5em;
 }
 
-/* Permissions & Ownership */
 
-#permowner details {
+@media only screen and (max-width: 800px) {
+    .full-image {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+        overflow: auto;
+    }
+
+    .full-image img {
+        height: auto;
+        width: auto;
+        max-height: 90vh;
+        max-width: 90%;
+        margin-top: 1em;
+    }
+
+    .full-image .image-nav {
+        width: 80%;
+    }
+}
+
+/* Details */
+
+details {
     display: block;
     width: 80%;
     margin: 1em auto;
@@ -240,29 +282,35 @@ hgroup p {
     padding: .5em;
 }
 
-#permowner summary {
+summary {
     list-style: none;
     cursor: pointer;
     text-align: center;
     margin: 0px;
 }
-#permowner summary:before {
+
+summary:before {
     content: "\27A4";
 	float: left;
 }
-#permowner summary:after {
+
+summary:after {
     content: "\27A4";
     transform: scaleX(-1);
 	float: right;
 }
-#permowner details[open] summary:before {
+
+details[open] summary:before {
     content: "\27A4";
     transform: rotate(90deg);
 }
-#permowner details[open] summary:after {
+
+details[open] summary:after {
     content: "\27A4";
     transform: rotate(90deg);
 }
+
+/* Permissions & Ownership */
 
 #permowner table {
     width: 100%;
@@ -279,6 +327,19 @@ hgroup p {
 #permowner td {
     text-align: center;
     border-bottom: 1px var(--accent-color) dotted;
+}
+
+/* Tags */
+
+#tags details {
+    background-color: color-mix(in oklab, var(--text-color) 10%, #00000000 100%);
+}
+
+#tags ul {
+    list-style: none;
+    display: flex;
+    grid-gap: 1em;
+    flex-wrap: wrap;
 }
 
 /* Relationships */
