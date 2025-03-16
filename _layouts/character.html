@@ -42,14 +42,19 @@
                 {% endif %}
                 <table>
                     <thead>
-                        <tr>
-                            {% case page.style %}
-                                {% when 0 %}
+                        {% case page.style %}
+                            {% when 0 %}
+                                <tr>
                                     <th colspan="2">Attributes</th>
-                                {% when 1 %}
+                                </tr>
+                            {% when 1 %}
+                                <tr class="full-body-big">
                                     <th colspan="4">Attributes</th>
-                            {% endcase %}
-                        </tr>
+                                </tr>
+                                <tr class="full-body-small">
+                                    <th colspan="2">Attributes</th>
+                                </tr>
+                        {% endcase %}
                     </thead>
                     <tbody>
                         {% case page.style %}
@@ -64,7 +69,7 @@
                                 {% for part in page.attributes %}
                                     {% capture even %}{{ forloop.index | modulo: 2 }}{% endcapture %}
                                     {% if even == "1" %}
-                                        <tr>
+                                        <tr class="full-body-big">
                                             <th>{{ part[0] }}</th>
                                             <td>{{ part[1] }}</td>
                                     {% else %}
@@ -72,6 +77,12 @@
                                             <td>{{ part[1] }}</td>
                                         </tr>
                                     {% endif %}
+                                {% endfor %}
+                                {% for part in page.attributes %}
+                                <tr class="full-body-small">
+                                    <th>{{ part[0] }}</th>
+                                    <td>{{ part[1] }}</td>
+                                </tr>
                                 {% endfor %}
                         {% endcase %}
 
@@ -81,14 +92,19 @@
                 {% if page.relation_type == 0 %}
                     <table>
                         <thead>
-                            <tr>
-                                {% case page.style %}
-                                    {% when 0 %}
+                            {% case page.style %}
+                                {% when 0 %}
+                                    <tr>
                                         <th colspan="2">Relationships</th>
-                                    {% when 1 %}
+                                    </tr>
+                                {% when 1 %}
+                                    <tr class="full-body-big">
                                         <th colspan="4">Relationships</th>
-                                {% endcase %}
-                            </tr>
+                                    </tr>
+                                    <tr class="full-body-small">
+                                        <th colspan="2">Relationships</th>
+                                    </tr>
+                            {% endcase %}
                         </thead>
                         <tbody>
                             {% case page.style %}
@@ -111,7 +127,7 @@
                                     {% for relation in page.relationships %}
                                         {% capture even %}{{ forloop.index | modulo: 2 }}{% endcapture %}
                                         {% if even == "1" %}
-                                            <tr>
+                                            <tr class="full-body-big">
                                         {% endif %}
                                             <th>{{ relation[0] }}</th>
                                             {% if relation[1].url %}
@@ -126,6 +142,20 @@
                                         {% if even == "0" %}
                                             </tr>
                                         {% endif %}
+                                    {% endfor %}
+                                    {% for relation in page.relationships %}
+                                        <tr class="full-body-small">
+                                            <th>{{ relation[0] }}</th>
+                                            {% if relation[1].url %}
+                                                <td>
+                                                    {% capture name %}{{ relation[1].name }}{% endcapture %}
+                                                    {% capture url %}{{ relation[1].url }}{% endcapture %}
+                                                    {% include character_link.html name=name url=url %}
+                                                </td>
+                                            {% else %}
+                                                <td>{{ relation[1].name }}</td>
+                                            {% endif %}
+                                        </tr>
                                     {% endfor %}
                             {% endcase %}
                         </tbody>

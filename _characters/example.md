@@ -9,7 +9,7 @@ tags:
 - one
 
 # Basic
-name: Character Name
+name: Full-body Character
 tagline: A tagline for this character.
 image:
     icon: example_icon.png

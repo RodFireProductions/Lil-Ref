@@ -9,7 +9,7 @@ tags:
 - two
 
 # Basic
-name: Character Name
+name: Wiki Character
 tagline: A tagline for this character.
 image:
     icon: example2_icon.png

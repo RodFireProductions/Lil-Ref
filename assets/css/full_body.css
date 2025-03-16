@@ -40,7 +40,7 @@ section h2 {
 }
 
 #attributes table:nth-child(2) {
-    border-top: none;
+    margin-top: .5em;
 }
 
 #attributes th,
@@ -68,6 +68,10 @@ footer {
 
 /* Media Queries */
 
+.full-body-small {
+    display: none;
+}
+
 @media only screen and (max-width: 600px) {
     main {
         width: auto;
@@ -80,9 +84,18 @@ footer {
 
     #attributes table {
         width: 75%;
+        margin: auto;
     }
 
     footer {
         margin: auto;
+    }
+
+    .full-body-small {
+        display: table-row;
+    }
+
+    .full-body-big {
+        display: none;
     }
 }
