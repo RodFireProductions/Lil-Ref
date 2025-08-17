@@ -12,6 +12,11 @@ I just needed to restart again with a blank slate.
 Features
 - Two layout styles: Wiki, and Full-Body.
 
+
+To-Do
+- [ ] Make gallery and permissions a separate tab
+- [ ] Make a way to display a group of widgets with a certain tag
+
 ## Set Up Locally
 
 Pre-requisites:
