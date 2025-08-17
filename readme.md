@@ -20,6 +20,7 @@ Pre-requisites:
 Once Jekyll is installed, open the project folder in your command prompt and run this:
 
 ```
+bundle install
 bundle exec jekyll serve
 ```
 Your site should be available at [http://localhost:4000/](http://localhost:4000/)
