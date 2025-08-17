@@ -16,6 +16,7 @@ Features
 To-Do
 - [ ] Make gallery and permissions a separate tab
 - [ ] Make a way to display a group of widgets with a certain tag
+- [ ] Create better home page and other useful pages
 
 ## Set Up Locally
 
