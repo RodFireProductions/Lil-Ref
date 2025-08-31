@@ -19,7 +19,8 @@
         <link rel="shortcut icon" href="{{ 'assets/img/' | append: page.image.icon | relative_url }}">
     </head>
     <body>
-        {% include navigation.html %}
+
+        {% include navigation.html style="top" %}
 
         {% if page.style == 1 %}
             <aside id="body-image">
