@@ -1,18 +1,10 @@
 ---
 title: Lil-Ref
 layout: base
-
-group:
-    - c:example
-    - c:example2
-    - c:example
 ---
 
-## Displaying an individual widget.
+An original character directory template.
+
+See the example characters:
 {% include character_widget.html character="c:example" %}
-
-## Displaying a group of widgets.
-{% include character_widget_group.html characters=page.group %}
-
-## Displaying all widgets.
-{% include character_widget_all.html %}
+{% include character_widget.html character="c:example2" %}

@@ -11,13 +11,16 @@
     <body>
         <header>
             <h1>{{ page.title }}</h1>
-            {% include navigation.html %}
         </header>
-        <main>
 
-        {% include character_widget_group.html characters=page.characters %}
+        <div id="page">
+            {% include navigation.html style="side" %}
 
-        </main>
+            <main>
+            {% include character_widget_group.html characters=page.characters %}
+            </main>
+        </div>
+
         {% include footer.html %}
     </body>
 </html>
